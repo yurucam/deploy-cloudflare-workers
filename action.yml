@@ -14,7 +14,7 @@ inputs:
     type: string
 
   environment:
-    required: true
+    required: false
     type: string
 
 runs:
@@ -44,4 +44,4 @@ runs:
         accountId: ${{ inputs.account-id }}
         apiToken: ${{ inputs.api-token }}
         workingDirectory: ${{ inputs.working-directory }}
-        command: deploy --env ${{ inputs.environment }}
+        command: deploy${{ inputs.environment && format(' --env {0}', inputs.environment) || '' }}

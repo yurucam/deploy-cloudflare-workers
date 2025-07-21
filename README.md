@@ -41,7 +41,7 @@ jobs:
 | `working-directory` | ✅ | string | 프로젝트의 작업 디렉토리 경로 |
 | `account-id` | ✅ | string | Cloudflare 계정 ID |
 | `api-token` | ✅ | string | Cloudflare API 토큰 |
-| `environment` | ✅ | string | 배포할 환경 (예: production, staging) |
+| `environment` | ❌ | string | 배포할 환경 (예: production, staging). 지정하지 않으면 기본 환경으로 배포됩니다. |
 
 ## 필수 조건
 
@@ -83,6 +83,17 @@ GitHub 저장소의 Settings > Secrets and variables > Actions에서 다음 secr
     account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     environment: 'staging'
+```
+
+### 기본 환경으로 배포 (environment 생략)
+
+```yaml
+- name: Deploy to default environment
+  uses: your-username/deploy-cloudflare-workers@main
+  with:
+    working-directory: '.'
+    account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 ```
 
 ## 작동 방식
